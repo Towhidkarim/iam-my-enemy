@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Wraith_01_Dying_007_0: 6877180367599219703
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
