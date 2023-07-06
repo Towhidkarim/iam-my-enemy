@@ -11,12 +11,15 @@ public class MainPlayerScript : MonoBehaviour
     public Camera cam;
     Vector2 mouseDir;
     Vector2 mousePos;
+    private Animator ani;
+    private SpriteRenderer sprite;
 
    
 
     void Start()
     {
-
+        ani = GetComponent<Animator>();
+        sprite = ani.GetComponent<SpriteRenderer>();
 
     }
 
@@ -29,6 +32,28 @@ public class MainPlayerScript : MonoBehaviour
         mousePos = Input.mousePosition;
         Vector2 worldCoord = cam.ScreenToWorldPoint(mousePos);
         mouseDir = (worldCoord - (Vector2)transform.position).normalized;
+        if(moveDir.x > 0f)
+        {
+            ani.SetBool("isWalking", true);
+            sprite.flipX = false;
+
+        }
+        else if (moveDir.x < 0f)
+        {
+            ani.SetBool("isWalking", true);
+            sprite.flipX = true;
+
+        }
+        else if(moveDir.y > 0f || moveDir.y < 0f)
+        {
+            ani.SetBool("isWalking", true);
+            
+        }
+        else
+        {
+            ani.SetBool("isWalking", false);
+        }
+
     }
 
     private void FixedUpdate()
