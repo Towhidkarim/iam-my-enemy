@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Wraith_01_Casting Spells_003_0: 608676843387415005
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
