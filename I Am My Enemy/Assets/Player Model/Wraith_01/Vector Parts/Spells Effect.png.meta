@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Spells Effect_0: 5597650878821664513
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
