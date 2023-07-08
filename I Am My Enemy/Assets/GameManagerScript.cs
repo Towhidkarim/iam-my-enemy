@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManagerScript : MonoBehaviour
 {
     public GameObject enemy;
     public float spawnDelay = 2f;
@@ -13,16 +13,17 @@ public class GameManager : MonoBehaviour
     {
         delay = 0f;
         player = GameObject.FindGameObjectWithTag("Player");
+        FindAnyObjectByType<AudioManager>().Play("BGM", 1);
     }
 
     void Update()
     {
-        if(delay <= 0f)
+        if (delay <= 0f)
         {
             delay = spawnDelay;
             SpawnEnemy();
-            
-        } 
+
+        }
         else
         {
             delay -= Time.deltaTime;
@@ -34,20 +35,20 @@ public class GameManager : MonoBehaviour
         Vector2 newPos = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
         enemies.Add(Instantiate(enemy, newPos, Quaternion.identity));
     }
-    public GameObject  GetClosestEnemy()
+    public GameObject GetClosestEnemy()
     {
         float mindist = Mathf.Infinity;
         GameObject closest = enemies[0];
-        for (int i = 0; i < enemies.Count; i++)
+        foreach(GameObject enemey in enemies) 
         {
-            Vector2 distance = (enemies[i].transform.position - player.transform.position);
-            if(distance.sqrMagnitude < mindist)
+            Vector2 distance = (enemey.transform.position - player.transform.position);
+            if (distance.sqrMagnitude < mindist)
             {
                 mindist = distance.sqrMagnitude;
-                closest = enemies[i];
+                closest = enemey;
             }
         }
-        Debug.Log("Hello");
+
         return closest;
     }
 }
