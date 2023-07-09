@@ -21,14 +21,14 @@ public class WeaponScript : MonoBehaviour
         Vector3 dir = mousepos - transform.position;
         float rotation = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rotation);
-        if (Input.GetButtonDown("Fire1"))
-        {
-            GameObject newBullet = Instantiate(arrow, weapon.position, transform.rotation);
-            //newBullet.GetComponent<Rigidbody2D>().AddForce(transform.right * 30f, ForceMode2D.Impulse);
-            newBullet.GetComponent<Rigidbody2D>().velocity = transform.right * 40f;
-            FindAnyObjectByType<AudioManager>().Play("ArrowShoot", Random.Range(10, 20) * 0.1f);
+        //if (Input.GetButtonDown("Fire1"))
+        //{
+        //    GameObject newBullet = Instantiate(arrow, weapon.position, transform.rotation);
+        //    //newBullet.GetComponent<Rigidbody2D>().AddForce(transform.right * 30f, ForceMode2D.Impulse);
+        //    newBullet.GetComponent<Rigidbody2D>().velocity = transform.right * 50f;
+        //    FindAnyObjectByType<AudioManager>().Play("ArrowShoot", Random.Range(10, 20) * 0.1f);
             
-        }
+        //}
     }
 
     private void FixedUpdate()

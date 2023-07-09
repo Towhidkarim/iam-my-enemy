@@ -152,7 +152,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enemeySprite_0: 4339254456166229331
+      enemeySprite_1: -3432830420208575909
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

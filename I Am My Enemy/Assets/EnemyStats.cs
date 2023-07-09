@@ -10,6 +10,8 @@ public class EnemyStats
     public float maxHealth;
     public float maxSpeed;
     public float damage;
+    public string enemeyName;
+    public string weaponName;
 
     public EnemyStats(float maxHealth, float maxSpeed, float damage)
     {
@@ -25,4 +27,6 @@ public class EnemyStats
         this.health -= damage;
         if(this.health < 0) this.health = 0;
     }
+    
+    
 }

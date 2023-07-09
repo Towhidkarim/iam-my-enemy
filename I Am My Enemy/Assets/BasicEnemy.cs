@@ -11,8 +11,8 @@ public class BasicEnemy : MonoBehaviour
     public float health = 10f;
     private SpriteRenderer sprite;
     GameManagerScript gms;
-    public EnemyStats stats = new EnemyStats(10f, 5f, 2f);
-
+    StatManager statManager;
+    public GameObject deathParticle;
 
     void Start()
     {
@@ -20,15 +20,20 @@ public class BasicEnemy : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player").transform;
         gms = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
         sprite = GetComponent<SpriteRenderer>();
+        statManager = GetComponent<StatManager>();
+        statManager.stats.enemeyName = "BasicEnemey";
+        statManager.stats.weaponName = "Bow";
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (stats.health <= 0)
+
+        if(statManager.stats.health <= 0)
         {
             Kill();
         }
+
         float facingDir = (target.position - transform.position).x;
         if (facingDir < 0) sprite.flipX = true;
         else if (facingDir > 0) sprite.flipX = false;
@@ -63,24 +68,14 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
-    {
-        if (health > 0)
-        {
-            health -= damage;
-        }
-        else health = 0f;
-    }
-
     public void Kill()
     {
+        Instantiate(deathParticle, transform.position, Quaternion.identity);
         gms.enemies.Remove(gameObject);
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player Projectile")
-            stats.TakeDamage(5f);
-    }
+
+
+
 }
