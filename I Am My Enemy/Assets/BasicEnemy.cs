@@ -13,6 +13,8 @@ public class BasicEnemy : MonoBehaviour
     GameManagerScript gms;
     StatManager statManager;
     public GameObject deathParticle;
+    public string weaponName;
+    public string enemyName;
 
     void Start()
     {
@@ -21,8 +23,8 @@ public class BasicEnemy : MonoBehaviour
         gms = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
         sprite = GetComponent<SpriteRenderer>();
         statManager = GetComponent<StatManager>();
-        statManager.stats.enemeyName = "BasicEnemey";
-        statManager.stats.weaponName = "Bow";
+        statManager.stats.enemeyName = enemyName;
+        statManager.stats.weaponName = weaponName;
     }
 
     // Update is called once per frame
@@ -49,28 +51,20 @@ public class BasicEnemy : MonoBehaviour
             float rotation = Vector3.Cross(direction, transform.up).z;
             rb.angularVelocity = -rotation * 200f;
             //rb.velocity = transform.up * speed;
+
+            Quaternion angleRotation = Quaternion.LookRotation(target.position - transform.position, transform.TransformDirection(Vector3.up));
+            transform.rotation = new Quaternion(0, 0, angleRotation.z, angleRotation.w);
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.fixedDeltaTime);
 
 
-            //Vector2 repelForce = Vector2.zero;
-            //foreach  (GameObject enemy in  gms.enemies) {
-            //    Transform enemyTransform = enemy.transform;
-            //    if(enemyTransform != null)
-            //    {
-            //        float dist = (enemyTransform.position - transform.position).sqrMagnitude;
-            //        if(dist <= 16)
-            //        {
-            //            repelForce = (rb.position - (Vector2)transform.position).normalized;
-            //        }
-            //    }
-            //    rb.MovePosition((Vector2)transform.position - repelForce * Time.fixedDeltaTime);
-            //}
         }
     }
 
     public void Kill()
     {
         Instantiate(deathParticle, transform.position, Quaternion.identity);
+        gms.enemies.Remove(gameObject);
+        FindAnyObjectByType<AudioManager>().Play("Boop", Random.Range(15, 20) * 0.1f);
         gms.enemies.Remove(gameObject);
         Destroy(gameObject);
     }

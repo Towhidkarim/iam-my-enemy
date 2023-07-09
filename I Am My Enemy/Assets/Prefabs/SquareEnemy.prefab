@@ -254,7 +254,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718769989205553659}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60f1f77cece9659428cc359931311a73, type: 3}
   m_Name: 
@@ -262,7 +262,9 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 5
   health: 10
-  deathParticle: {fileID: 4166634395641947700, guid: a48922dd43bbce446971268d9d76bf4d, type: 3}
+  deathParticle: {fileID: 4166634395641947700, guid: d9ca36f50d5fc7844a06755fb77fa097, type: 3}
+  weaponName: Bazooka
+  enemyName: SquareEnemy
 --- !u!114 &-3583262178870056722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +284,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718769989205553659}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 105f311b2d13a154dbb8bc8597923e56, type: 3}
   m_Name: 
@@ -451,5 +453,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2c08eeef79548458fceffe1ebcc258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 8499152158775975269, guid: ef95d7f32daaced48b04744f10343a49, type: 3}
-  fireRate: 0.25
+  projectile: {fileID: 8499152158775975269, guid: 2abb2ea50d2a4c84e8ae8563fd7855c8, type: 3}
+  fireRate: 0.5

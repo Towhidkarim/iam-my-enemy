@@ -20,7 +20,7 @@ public class EnemeyWeaponShoot : MonoBehaviour
            
             GameObject newBullet = Instantiate(projectile, transform.position, transform.rotation);
             //newBullet.GetComponent<Rigidbody2D>().AddForce(transform.right * 30f, ForceMode2D.Impulse);
-            newBullet.GetComponent<Rigidbody2D>().velocity = transform.right * 50f;
+            newBullet.GetComponent<Rigidbody2D>().velocity = transform.right * 15f;
             fireDelay = 1f/fireRate;
         }
         else
