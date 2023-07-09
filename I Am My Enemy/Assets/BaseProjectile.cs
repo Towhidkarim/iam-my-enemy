@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,9 @@ public class BaseProjectile : MonoBehaviour
     public float speed = 30f;
     public GameObject particleHit;
     public GameManagerScript gms;
+    public float baseDamage = 2.5f;
+    [NonSerialized]
+    public float damageMultiplier = 1;
 
 
     float delay = 1f;
@@ -21,7 +25,7 @@ public class BaseProjectile : MonoBehaviour
         //Debug.Log(gms);
         target = gms.GetClosestEnemy().transform;
         targetPos = target.position;
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 3f);
 
     }
 
@@ -44,6 +48,10 @@ public class BaseProjectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Instantiate(particleHit, rb.position, Quaternion.identity);
+        if(collision.collider.tag == "Enemey")
+        {
+            collision.collider.gameObject.GetComponent<StatManager>().stats.TakeDamage(baseDamage * damageMultiplier);
+        }
         Destroy(gameObject);
 
     }

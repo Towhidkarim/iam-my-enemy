@@ -68,8 +68,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0015000105, y: -0.00045001507, z: 0}
-    m_Extent: {x: 0.9987, y: 1.00775, z: 0}
+    m_Center: {x: -0.0024499893, y: -0.0026999712, z: 0}
+    m_Extent: {x: 1.00455, y: 1.0071, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9753,7 +9753,7 @@ GameObject:
   - component: {fileID: 8593687448738118843}
   - component: {fileID: 494484455987932707}
   - component: {fileID: 2988647419687778569}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemeyArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9820,7 +9820,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -723862831719615485, guid: 29e634dd2b6be7044b535bfed2b5f810, type: 3}
-  m_Color: {r: 0.7843138, g: 0.5803922, b: 0.5803922, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

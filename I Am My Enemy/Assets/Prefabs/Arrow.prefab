@@ -68,8 +68,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0015000105, y: -0.00045001507, z: 0}
-    m_Extent: {x: 0.9987, y: 1.00775, z: 0}
+    m_Center: {x: -0.005250007, y: -0.0022000074, z: 0}
+    m_Extent: {x: 1.00335, y: 1.0001, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9753,6 +9753,7 @@ GameObject:
   - component: {fileID: 8593687448738118843}
   - component: {fileID: 494484455987932707}
   - component: {fileID: 2988647419687778569}
+  - component: {fileID: 1474467520337664320}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -10016,3 +10017,16 @@ TrailRenderer:
   m_Autodestruct: 1
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &1474467520337664320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8499152158775975269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3ed154868cb24a42ad5d8bfe732f860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitParticle: {fileID: 7047730530909657549, guid: db151ec56fea70f4bbc6e26be648db4b, type: 3}
