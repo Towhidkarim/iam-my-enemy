@@ -20,8 +20,8 @@ public class EnemeyBow : MonoBehaviour
 
             GameObject newBullet = Instantiate(projectile, transform.position, transform.rotation);
             //newBullet.GetComponent<Rigidbody2D>().AddForce(transform.right * 30f, ForceMode2D.Impulse);
-            newBullet.GetComponent<Rigidbody2D>().velocity = transform.right * 50f;
-            fireDelay = 1f / fireRate;
+            newBullet.GetComponent<Rigidbody2D>().velocity = transform.right * 20f;
+            fireDelay = (1f / fireRate) + Random.Range(1f, 2f);
         }
         else
         {

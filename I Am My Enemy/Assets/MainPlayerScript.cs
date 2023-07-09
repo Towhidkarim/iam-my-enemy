@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class MainPlayerScript : MonoBehaviour
 {
@@ -15,21 +17,30 @@ public class MainPlayerScript : MonoBehaviour
     private Animator ani;
     private SpriteRenderer sprite;
     public GameObject infestParticle;
+    public Image healthBar;
+    public TextMeshProUGUI healthLabel;
    
 
     [NonSerialized]
     public bool isInfested = false;
     [NonSerialized]
     public bool slowmo = false;
+    [NonSerialized]
+    public string currentWeapon = "Unarmed";
 
     GameManagerScript gms;
     public Texture2D attackCursor;
+
+    public PlayerStats stats = new PlayerStats(20f, 10f);
 
     void Start()
     {
         ani = GetComponent<Animator>();
         sprite = ani.GetComponent<SpriteRenderer>();
         gms = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
+        stats.healthBar = healthBar;
+        stats.healthLabel = healthLabel;
+        stats.healthLabel.text = (stats.maxHealth + "/" + stats.maxHealth).ToString();
 
     }
 
@@ -74,8 +85,12 @@ public class MainPlayerScript : MonoBehaviour
 
                     GetComponent<SpriteRenderer>().sprite = GetEnemyOnMouse().GetComponent<SpriteRenderer>().sprite;
                     GetComponent<SpriteRenderer>().color = GetEnemyOnMouse().GetComponent<SpriteRenderer>().color;
-                    transform.Find("WeaponPoint").Find("Bow").gameObject.SetActive(true);
-                    transform.Find("WeaponPoint").Find("Unarmed").gameObject.SetActive(false);
+
+                    string weaponName = targetEnemy.GetComponent<StatManager>().stats.weaponName;
+
+                    transform.Find("WeaponPoint").Find(currentWeapon).gameObject.SetActive(false);
+                    currentWeapon = weaponName;
+                    transform.Find("WeaponPoint").Find(weaponName).gameObject.SetActive(true);
                     isInfested = true;
                     targetEnemy.GetComponent<StatManager>().Kill();
 
@@ -110,7 +125,7 @@ public class MainPlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {   
-        rBody.MovePosition(rBody.position + moveDir * movementSpeed * Time.fixedDeltaTime);
+        rBody.MovePosition(rBody.position + moveDir * stats.speed * Time.fixedDeltaTime);
 
         if (GetEnemyOnMouse() != null && slowmo)
             Cursor.SetCursor(attackCursor, new Vector2(attackCursor.height / 2, attackCursor.width / 2), CursorMode.Auto);
@@ -127,6 +142,15 @@ public class MainPlayerScript : MonoBehaviour
             return detectedCollider.gameObject;
         }
         else return null;
+    }
+
+    void EndInfest()
+    {
+        isInfested = false;
+        transform.Find("WeaponPoint").Find("Unarmed").gameObject.SetActive(true);
+        transform.Find("WeaponPoint").Find(currentWeapon).gameObject.SetActive(false);
+
+
     }
 
 }

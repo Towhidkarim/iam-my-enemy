@@ -252,6 +252,8 @@ MonoBehaviour:
   speed: 5
   health: 10
   deathParticle: {fileID: 4166634395641947700, guid: a48922dd43bbce446971268d9d76bf4d, type: 3}
+  weaponName: Bow
+  enemyName: BasicEnemy
 --- !u!114 &-3583262178870056722
 MonoBehaviour:
   m_ObjectHideFlags: 0

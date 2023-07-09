@@ -21,7 +21,8 @@ public class GameManagerScript : MonoBehaviour
         if (delay <= 0f)
         {
             delay = spawnDelay;
-            SpawnEnemy();
+            //SpawnEnemy();
+
 
         }
         else
@@ -34,6 +35,8 @@ public class GameManagerScript : MonoBehaviour
     {
         Vector2 newPos = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
         enemies.Add(Instantiate(enemy, newPos, Quaternion.identity));
+
+
     }
     public GameObject GetClosestEnemy()
     {

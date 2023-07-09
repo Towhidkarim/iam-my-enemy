@@ -27,11 +27,14 @@ public class Companion : MonoBehaviour
         {
             //transform.localPosition = Vector2.Lerp(transform.localPosition, Vector2.zero, 0.025f);
             transform.localPosition = Vector2.MoveTowards(transform.localPosition, Vector2.zero, 2.5f * Time.deltaTime);
+            transform.localScale = new Vector2(1f, 1f);
         }
         else
         {
             //transform.localPosition = Vector2.Lerp(transform.localPosition, new Vector2(-1.55f, 1.2f), 0.025f);
             transform.localPosition = Vector2.MoveTowards(transform.localPosition, new Vector2(-1.55f, 1.2f), 2.5f * Time.deltaTime);
+            transform.localScale = new Vector2(0.55f, 0.55f);
+
 
 
         }
