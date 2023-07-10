@@ -20,6 +20,15 @@ public class ArrowScript : MonoBehaviour
         if (enemey.tag == "Enemey")
         {
             enemey.GetComponent<StatManager>().stats.TakeDamage(5f);
+            MainPlayerScript mainPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<MainPlayerScript>();
+
+            float random = Random.Range(0, 1f);
+            float chance = mainPlayer.stats.chanceToHeal;
+            if (random <= chance)
+            {
+                mainPlayer.stats.Heal(1);
+            }
+
         }
             Instantiate(hitParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);

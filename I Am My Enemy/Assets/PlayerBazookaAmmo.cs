@@ -25,8 +25,16 @@ public class PlayerBazookaAmmo : MonoBehaviour
         Collider2D[] collidedObjects = Physics2D.OverlapCircleAll(transform.position, 3);
         foreach(Collider2D col in collidedObjects)
         {
-            if(col.gameObject.CompareTag("Enemey")) {
+            if (col.gameObject.CompareTag("Enemey"))
+            {
                 col.gameObject.GetComponent<StatManager>().stats.TakeDamage(damage);
+                MainPlayerScript mainPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<MainPlayerScript>();
+                float random = UnityEngine.Random.Range(0, 1f);
+                float chance = mainPlayer.stats.chanceToHeal;
+                if (random <= chance)
+                {
+                    mainPlayer.stats.Heal(1);
+                }
             }
         }
         Instantiate(destroyParticle, transform.position, Quaternion.identity);

@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -8,9 +11,13 @@ public class GameManagerScript : MonoBehaviour
     public float spawnDelay = 2f;
     float delay;
     public List<GameObject> enemies;
-    private GameObject player;
+    [NonSerialized]
+    public GameObject player;
+    public bool isPaused = false;
+    public Image pauseScreen;
     void Start()
     {
+        Time.timeScale = 1f;
         delay = 0f;
         player = GameObject.FindGameObjectWithTag("Player");
         FindAnyObjectByType<AudioManager>().Play("BGM", 1);
@@ -18,22 +25,17 @@ public class GameManagerScript : MonoBehaviour
 
     void Update()
     {
-        if (delay <= 0f)
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
-            delay = spawnDelay;
-            //SpawnEnemy();
-
-
-        }
-        else
-        {
-            delay -= Time.deltaTime;
+            if(isPaused) ResumeGame();
+            else if(!isPaused) PauseGame();
+            isPaused = !isPaused;
         }
     }
 
     public void SpawnEnemy()
     {
-        Vector2 newPos = new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
+        Vector2 newPos = new Vector2(UnityEngine.Random.Range(-10f, 10f), UnityEngine.Random.Range(-10f, 10f));
         enemies.Add(Instantiate(enemy, newPos, Quaternion.identity));
 
 
@@ -53,5 +55,26 @@ public class GameManagerScript : MonoBehaviour
         }
 
         return closest;
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        pauseScreen.gameObject.SetActive(true);
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        pauseScreen.gameObject.SetActive(false);
+    }
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

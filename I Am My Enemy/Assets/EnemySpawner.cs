@@ -10,7 +10,9 @@ public class EnemySpawner : MonoBehaviour
 {
     public List<EnemyType> enemyCollection;
     public TextMeshProUGUI announceLabel;
+
     GameManagerScript gms;
+    MainPlayerScript mainPlayer;
     [NonSerialized]
     public int currentWave = 0;
     int enemyPerWave = 30;
@@ -24,6 +26,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         gms = GetComponent<GameManagerScript>();
+        mainPlayer = gms.player.GetComponent<MainPlayerScript>();
         spawnsThisWave = enemyIncreasePerWave;
     }
 
@@ -31,10 +34,18 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         if (waveCountDown > 0)
-        {   
-            if(waveCountDown > 3) announceLabel.text = "Wave Complete!";
+        {
+            if (waveCountDown > 3)
+            {
+                if(currentWave == 0) announceLabel.text = "Starting!";
+                else announceLabel.text = "Wave Complete!";
+            } 
             else
-            announceLabel.text = "Starting Wave  " + (currentWave + 1) + " in " + Mathf.Floor(waveCountDown);
+            {
+                announceLabel.text = "Starting Wave  " + (currentWave + 1) + " in " + Mathf.Floor(waveCountDown);
+
+
+            }
             waveCountDown -= Time.deltaTime;
         }
         else if (waveDuration > 0)
@@ -43,16 +54,26 @@ public class EnemySpawner : MonoBehaviour
         }
         else if (waveDuration <= 0)
         {
-            waveDuration = 30f;
+            gms.player.GetComponent<PerkManager>().ActivateUi();
+            StatIncrement();
             currentWave++;
+            waveDuration = 30f + 5f * currentWave;
             waveCountDown = 3f;
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(Vector2.zero, 100);
+            foreach (Collider2D collider in colliders)
+            {
+                if(collider.gameObject.transform.CompareTag("Enemey"))
+                {
+                    collider.gameObject.GetComponent<BasicEnemy>().Kill();
+                }
+            }
         }
         if (spawnDelay <= 0 && waveCountDown <=0)
         {
             announceLabel.text = Mathf.Floor(waveDuration).ToString();
             int count = SpawnEnemy();
             spawnCount += count;
-            spawnDelay = 1f;
+            spawnDelay = 1.5f;
 
         }
 
@@ -61,7 +82,7 @@ public class EnemySpawner : MonoBehaviour
 
     int SpawnEnemy()
     {
-        int spawnCount = 1 + UnityEngine.Random.Range(0, 1) + (int)Mathf.Floor(currentWave / 3f);
+        int spawnCount = 1 + UnityEngine.Random.Range(0, (int)Mathf.Round(currentWave / 3f));
 
         float newLocx = UnityEngine.Random.Range(-47f, 47f);
         float newLocy = UnityEngine.Random.Range(-27f, 27f);
@@ -84,5 +105,11 @@ public class EnemySpawner : MonoBehaviour
         }
 
         return spawnCount;
+    }
+
+    public void StatIncrement()
+    {
+        mainPlayer.stats.AddHealthPct(0.05f);
+        mainPlayer.stats.AddDamagePct(0.05f);
     }
 }

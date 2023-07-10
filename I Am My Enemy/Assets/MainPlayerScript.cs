@@ -19,7 +19,10 @@ public class MainPlayerScript : MonoBehaviour
     public GameObject infestParticle;
     public Image healthBar;
     public TextMeshProUGUI healthLabel;
-   
+    public Image deathScreen;
+    public TextMeshProUGUI tutorialLabel;
+    public Image shiftDuration;
+
 
     [NonSerialized]
     public bool isInfested = false;
@@ -27,6 +30,8 @@ public class MainPlayerScript : MonoBehaviour
     public bool slowmo = false;
     [NonSerialized]
     public string currentWeapon = "Unarmed";
+    [NonSerialized]
+    public float shapeShiftTime = 0f; 
 
     GameManagerScript gms;
     public Texture2D attackCursor;
@@ -47,15 +52,39 @@ public class MainPlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(shapeShiftTime <= 0)
+        {
+            isInfested = false;
+            transform.Find("WeaponPoint").Find(currentWeapon).gameObject.SetActive(false);
+            transform.Find("WeaponPoint").Find("Unarmed").gameObject.SetActive(false);
+            currentWeapon = "Unarmed";
+        }
+        else if(shapeShiftTime > 0 && isInfested)
+        {
+            shapeShiftTime -= Time.deltaTime;
+        }
+
+        shiftDuration.fillAmount = (float) (shapeShiftTime / 10f);
+
+        if(stats.currentHealth <= 0)
+        {
+            DeathAction();
+        }
         moveDir.x = Input.GetAxisRaw("Horizontal");
         moveDir.y = Input.GetAxisRaw("Vertical");
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
         if(!isInfested)
         {
+            tutorialLabel.text = "Hold Right Mouse Button on an enemy to shape shift";
             GetComponent<SpriteRenderer>().enabled = false;
         }
-        else GetComponent<SpriteRenderer>().enabled = true;
+        else
+        {
+            GetComponent<SpriteRenderer>().enabled = true;
+            tutorialLabel.text = " ";
+        }
+            
 
         if(Input.GetMouseButtonDown(1) )
         {
@@ -92,6 +121,7 @@ public class MainPlayerScript : MonoBehaviour
                     currentWeapon = weaponName;
                     transform.Find("WeaponPoint").Find(weaponName).gameObject.SetActive(true);
                     isInfested = true;
+                    shapeShiftTime = 10f;
                     targetEnemy.GetComponent<StatManager>().Kill();
 
                 }
@@ -151,6 +181,12 @@ public class MainPlayerScript : MonoBehaviour
         transform.Find("WeaponPoint").Find(currentWeapon).gameObject.SetActive(false);
 
 
+    }
+
+    public void DeathAction()
+    {
+        Time.timeScale = 0f;
+        deathScreen.gameObject.SetActive(true);
     }
 
 }
