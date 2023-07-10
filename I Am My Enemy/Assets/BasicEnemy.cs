@@ -36,9 +36,9 @@ public class BasicEnemy : MonoBehaviour
             Kill();
         }
 
-        float facingDir = (target.position - transform.position).x;
-        if (facingDir < 0) sprite.flipX = true;
-        else if (facingDir > 0) sprite.flipX = false;
+        //float facingDir = (target.position - transform.position).x;
+        //if (facingDir < 0) sprite.flipX = true;
+        //else if (facingDir > 0) sprite.flipX = false;
 
     }
 

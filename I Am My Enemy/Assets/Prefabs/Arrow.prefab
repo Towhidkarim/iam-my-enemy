@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1642939829170379708}
   - component: {fileID: 831010329933228312}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,8 +68,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.005250007, y: -0.0022000074, z: 0}
-    m_Extent: {x: 1.00335, y: 1.0001, z: 0}
+    m_Center: {x: -0.006099999, y: -0.00055003166, z: 0}
+    m_Extent: {x: 0.999, y: 1.00105, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5110865448877954905}
   - component: {fileID: 1221935608034008144}
   - component: {fileID: 3606516498288457826}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4923,7 +4923,7 @@ GameObject:
   - component: {fileID: 1576889471583547175}
   - component: {fileID: 4011770260429872752}
   - component: {fileID: 6383201698866187242}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9751,10 +9751,10 @@ GameObject:
   - component: {fileID: 199396481503330111}
   - component: {fileID: 6761233065244376212}
   - component: {fileID: 8593687448738118843}
-  - component: {fileID: 494484455987932707}
+  - component: {fileID: 6043995548272797715}
   - component: {fileID: 2988647419687778569}
   - component: {fileID: 1474467520337664320}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9858,7 +9858,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &494484455987932707
+--- !u!61 &6043995548272797715
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9892,7 +9892,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 2.2647808, y: 0.012723565}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -9902,7 +9902,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.900439, y: 0.7991892}
+  m_Size: {x: 9.43, y: 1.13}
   m_EdgeRadius: 0
 --- !u!96 &2988647419687778569
 TrailRenderer:

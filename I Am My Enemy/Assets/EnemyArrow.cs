@@ -20,8 +20,11 @@ public class EnemyArrow : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            MainPlayerScript mainPlayer = collision.gameObject.GetComponent<MainPlayerScript>();
+            mainPlayer.stats.TakeDamage(3);
 
-        collision.gameObject.GetComponent<MainPlayerScript>().stats.TakeDamage(3);
+            
+            
         }
         Instantiate(hitEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
