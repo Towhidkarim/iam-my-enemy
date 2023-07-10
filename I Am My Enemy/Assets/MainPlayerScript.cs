@@ -86,7 +86,7 @@ public class MainPlayerScript : MonoBehaviour
         }
             
 
-        if(Input.GetMouseButtonDown(1) )
+        if(Input.GetMouseButtonDown(1) && !isInfested)
         {
             Time.timeScale = 0.15f;
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
@@ -95,7 +95,7 @@ public class MainPlayerScript : MonoBehaviour
 
 
         }
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1) && !isInfested)
         {
             Time.timeScale = 1f;
             Time.fixedDeltaTime = 0.02f;
@@ -188,5 +188,6 @@ public class MainPlayerScript : MonoBehaviour
         Time.timeScale = 0f;
         deathScreen.gameObject.SetActive(true);
     }
+
 
 }
