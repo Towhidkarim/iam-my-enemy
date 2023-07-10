@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public List<EnemyType> enemyCollection;
     public TextMeshProUGUI announceLabel;
+    public Image winScreen;
 
     GameManagerScript gms;
     MainPlayerScript mainPlayer;
@@ -57,6 +58,7 @@ public class EnemySpawner : MonoBehaviour
             gms.player.GetComponent<PerkManager>().ActivateUi();
             StatIncrement();
             currentWave++;
+            if (currentWave == 5) YouWin();
             waveDuration = 30f + 5f * currentWave;
             waveCountDown = 3f;
             Collider2D[] colliders = Physics2D.OverlapCircleAll(Vector2.zero, 100);
@@ -78,6 +80,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
         else spawnDelay -= Time.deltaTime;
+
     }
 
     int SpawnEnemy()
@@ -111,5 +114,11 @@ public class EnemySpawner : MonoBehaviour
     {
         mainPlayer.stats.AddHealthPct(0.05f);
         mainPlayer.stats.AddDamagePct(0.05f);
+    }
+
+    public void YouWin()
+    {
+        Time.timeScale = 0f;
+        winScreen.gameObject.SetActive(true);
     }
 }
